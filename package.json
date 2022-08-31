@@ -1,0 +1,36 @@
+{
+  "name": "backend-avanzado-proyecto-final",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TefyCastVent/Backend-Avanzado-Proyecto-Final.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TefyCastVent/Backend-Avanzado-Proyecto-Final/issues"
+  },
+  "homepage": "https://github.com/TefyCastVent/Backend-Avanzado-Proyecto-Final#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "joi": "^17.6.0",
+    "jwt-simple": "^0.5.6",
+    "mongoose": "^6.5.2",
+    "nodemailer": "^6.7.8"
+  },
+  "devDependencies": {
+    "jest": "^28.1.3",
+    "mongodb-memory-server": "^8.9.0",
+    "nodemon": "^2.0.19",
+    "supertest": "^6.2.4"
+  }
+}
