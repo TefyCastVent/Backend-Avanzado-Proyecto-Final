@@ -10,6 +10,7 @@ router
 
 router
     .route('/shoppingCart/:id')
-    .put(shoppingCart.updateShoppingCart);
+    .put(shoppingCart.updateShoppingCart)
+    .delete(shoppingCart.deleteShoppingCart);
 
 export default router;

@@ -8,11 +8,12 @@ const router = express.Router();
 router.route('/products')
         .get(productController.getAllProductStock)
 
+router.use('/seller/products',checkSeller)
 router.route('/seller/products')
-        .get(checkSeller,productController.getAllProduct)
-        .post(checkSeller,createProductValidator,productController.createProduct)
+        .get(productController.getAllProduct)
+        .post(createProductValidator,productController.createProduct)
 
-router.route('/seller/products/:id').put(checkSeller,productController.updateProductById).delete(checkSeller,productController.deleteProductById);
+router.route('/seller/products/:id').put(productController.updateProductById).delete(checkSeller,productController.deleteProductById);
 
 
 export default router;

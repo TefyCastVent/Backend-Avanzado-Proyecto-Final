@@ -7,7 +7,6 @@ const createUserSchema = joi.object({
   email: joi.string().required(),
   password: joi.string().required(),
   role: joi.string().valid(...options),
-  adress: joi.object({
     street: joi.alternatives().conditional('role', { is: 'Customer', then: joi.string().required() }),
     location: joi.alternatives().conditional('role', { is: 'Customer', then: joi.string().required() }),
     outdoorNumber: joi.alternatives().conditional('role', { is: 'Customer', then: joi.number().integer().required() }),
@@ -16,8 +15,7 @@ const createUserSchema = joi.object({
     city: joi.alternatives().conditional('role', { is: 'Customer', then: joi.string().required() }),
     country: joi.alternatives().conditional('role', { is: 'Customer', then: joi.string().required() }),
     zipCode: joi.alternatives().conditional('role', { is: 'Customer', then: joi.number().integer().required() }),
-    references: joi.alternatives().conditional('role', { is: 'Customer', then: joi.string().required() })
-  }),
+    references: joi.alternatives().conditional('role', { is: 'Customer', then: joi.string().required() }),
   contacts: joi.alternatives().conditional('role', { is: 'Customer', then: joi.array().items(joi.string().optional()) }),
   isActive: joi.boolean().default(true).required(),
 })

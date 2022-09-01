@@ -30,14 +30,14 @@ const schema = new mongoose.Schema({
     required: true,
   },
   // --------------------------------------------------------------------------
-  adress: {
+
     street: {
       type: String,
       required: function() { return this.role === "Customer"; },
     },
     location: {
       type: String,
-      //required: true,
+      required: function() { return this.role === "Customer"; },
     },
     outdoorNumber: {
       type: Number,
@@ -66,9 +66,8 @@ const schema = new mongoose.Schema({
     references: {
       type: String,
       //required: true,
-    }
-  },
-  contacts: {
+    },
+contacts: {
     type: [
         { nameContact: String,
           phoneContact: String,

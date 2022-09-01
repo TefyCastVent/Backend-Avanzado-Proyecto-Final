@@ -7,6 +7,7 @@ const checkAdmin = async(req, res, next) => {
     if ( role === "Administrator") {
       try{
         const token = req.headers.authorization;
+        console.log(token)
         if(!token) {
           return res.status(500).json({
                  msg: "No hay sesión"
@@ -19,24 +20,26 @@ const checkAdmin = async(req, res, next) => {
                 msg: 'Token invalido',
           })
         }
-        if(payload.role !== "Administrator" ){
+        if(payload.role != "Administrator" ){
           return res.status(500).json({
                   msg: "Inicie sesión como administrador"
           })
         }
-        const expirationDate= parseInt(payload.expirationDate)
-        if(expirationDate.getTime() < new Date().getTime()){
-          return res.status(400).json({
-                msg: 'El toquen a expirado'
-          })
-        }
+        // const expirationDate= parseInt(payload.expirationDate)
+        // if(expirationDate.getTime() < new Date().getTime()){
+        //   return res.status(400).json({
+        //         msg: 'El toquen a expirado'
+        //   })
+        // }
         next();
       }catch (error) {
             return res.status(401).json({
                 msg: 'Token invalido'
             })
       } 
-    } 
-    next();
+    }else{
+      next();
+    }
+    
 };
 export {checkAdmin}

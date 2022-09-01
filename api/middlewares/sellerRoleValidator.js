@@ -17,23 +17,23 @@ const checkSeller = async(req, res, next) => {
                 msg: 'Token invalido',
           })
         }
-        if(payload.role !== "Seller" ){
+        if(payload.role != "Seller" ){
           return res.status(500).json({
                   msg: "Inicie sesión como vendedor"
           })
         }
-        const expirationDate= parseInt(payload.expirationDate)
-        if(expirationDate.getTime() < new Date().getTime()){
-          return res.status(400).json({
-                msg: 'El toquen a expirado'
-          })
-        }
+        console.log(payload)
+        // const expirationDate= parseInt(payload.expirationDate)
+        // if(expirationDate.getTime() < new Date().getTime()){
+        //   return res.status(400).json({
+        //         msg: 'El toquen a expirado'
+        //   })
+        // }
         next();
       }catch (error) {
             return res.status(401).json({
                 msg: 'Token invalido'
             })
       } 
-    next();
 };
 export {checkSeller}
