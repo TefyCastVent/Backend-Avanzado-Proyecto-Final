@@ -18,7 +18,7 @@ const createUserSchema = joi.object({
     zipCode: joi.alternatives().conditional('role', { is: 'Customer', then: joi.number().integer().required() }),
     references: joi.alternatives().conditional('role', { is: 'Customer', then: joi.string().required() })
   }),
-  contacts: joi.array().items(joi.string()),
+  contacts: joi.alternatives().conditional('role', { is: 'Customer', then: joi.array().items(joi.string().optional()) }),
   isActive: joi.boolean().default(true).required(),
 })
 

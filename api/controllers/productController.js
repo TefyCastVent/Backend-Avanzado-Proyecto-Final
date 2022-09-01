@@ -29,6 +29,21 @@ const getAllProduct = async (req, res) => {
         })
       }
   };
+
+  const getAllProductStock = async (req, res) => {
+    try {
+        const products = await Product.find({stock: { $ne: 0 }});
+        return res.json({
+          msg: 'Productos encontrados',
+          data: products
+        })
+      } catch (error) {
+        return res.status(500).json({
+          msg: 'Error al mostrar productos',
+          error,
+        })
+      }
+  };
   
   
   const updateProductById = async (req, res) => {
@@ -47,13 +62,12 @@ const getAllProduct = async (req, res) => {
     }
   };
   
-  const deleteMovieById = async (req, res) => {
+  const deleteProductById = async (req, res) => {
     try{
       const { id } = req.params;
       const product = await Product.findByIdAndDelete(id);
       return res.json({
-        msg: 'Producto eliminado',
-        data: { movie },
+        msg: 'Producto eliminado'
       });
     }catch (error){
       return res.status(500).json({
@@ -63,6 +77,6 @@ const getAllProduct = async (req, res) => {
     }
   };
   
-  export { createProduct, getAllProduct, updateProductById, deleteMovieById };
+  export { createProduct, getAllProduct, updateProductById, deleteProductById, getAllProductStock };
   
   

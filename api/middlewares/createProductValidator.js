@@ -4,8 +4,8 @@ const createUserSchema = joi.object({
   description: joi.string().required(),
   specs: joi.object({specsTitle: joi.string(), specsDescription: joi.string()}),
   category: joi.string().required(),
-  price: joi.number().integer().required(),
-  stock: joi.number().integer().required()
+  price: joi.number().required().greater(0),
+  stock: joi.number().integer().required().greater(0)
 })
 
 

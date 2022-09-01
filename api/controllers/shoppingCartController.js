@@ -34,7 +34,7 @@ const getAllShoppingCart = async (req, res) => {
     }
 };
 
-//TODO: Buscar la manera de enviar solo un producto y anadir al carrito además de lo anterior
+
 const updateShoppingCart = async (req, res) => {
     try {
         const { id } = req.params;
@@ -53,4 +53,19 @@ const updateShoppingCart = async (req, res) => {
     }
 };
 
-export { createShoppingCart, getAllShoppingCart, updateShoppingCart };
+const deleteShoppingCart = async (req, res) => {
+    try{
+      const { id } = req.params;
+      const shoppingCart = await ShoppingCart.findByIdAndDelete(id);
+      return res.json({
+        msg: 'Carrito eliminado'
+      });
+    }catch (error){
+      return res.status(500).json({
+        msg: 'error al eliminar carrito',
+        error,
+      });
+    }
+  };
+  
+export { createShoppingCart, getAllShoppingCart, updateShoppingCart, deleteShoppingCart };
