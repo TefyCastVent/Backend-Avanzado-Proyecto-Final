@@ -1,5 +1,5 @@
 import express from "express";
-// import bookRoutes from "./routes/bookRoutes.js";
+import productRoutes from "./routes/productRoutes.js";
 // import clientRoutes from "./routes/clientRoutes.js"
 import authRoutes from "./routes/authRoutes.js"
 
@@ -13,7 +13,7 @@ api.get('/status', ( req, res ) => {
     })
 })
 api.use(authRoutes)
-// api.use(bookRoutes)
+api.use(productRoutes)
 // api.use(clientRoutes)
 
 export default api;

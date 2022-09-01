@@ -1,12 +1,11 @@
 import joi from "joi"
-let options = ['Administrator', 'Seller', 'Customer'];
 const createUserSchema = joi.object({
-  name: joi.string().required(),
-  lastName: joi.string().required(),
-  phoneNumber: joi.string().required(),
-  email: joi.string().required(),
-  password: joi.string().required(),
-  isActive: joi.boolean().default(true).required(),
+  productName: joi.string().required(),
+  description: joi.string().required(),
+  specs: joi.object({specsTitle: joi.string(), specsDescription: joi.string()}),
+  category: joi.string().required(),
+  price: joi.number().integer().required(),
+  stock: joi.number().integer().required()
 })
 
 

@@ -2,29 +2,18 @@ import bcrypt from 'bcrypt'
 import jwt from 'jwt-simple'
 import configDB from '../config/index.js'
 
-import Client from '../models/Client.js'
-import Employee from '../models/Employee.js'
+import User from '../models/User.js'
 
 const register = async(req, res) => {
     try {
-        // Encriptamos el password enviado desde el body
         const encryptedPass = await bcrypt.hash(req.body.password, 4);
         req.body.password = encryptedPass;
-        if(req.body.role === "Customer"){
-            const user = await Client.create(req.body);
-            user.password = undefined;
-            return res.json({
-                msg: 'Usuario creado',
-                data: { user}
-            })
-        }else {
-            const user = await Employee.create(req.body);
-            user.password = undefined;
-            return res.json({
-                msg: 'Usuario creado',
-                data: { user}
-            })
-        }
+        const user = await User.create(req.body);
+        user.password = undefined;
+        return res.json({
+            msg: 'Usuario creado',
+            data: { user}
+        })
     } catch (error) {
         return res.status(500).json({
             msg: 'Ocurrio un error al registrar usuario',
@@ -35,15 +24,10 @@ const register = async(req, res) => {
 
 const login = async (req, res) => {
     try {
-        // Buscamos un usuario con el correo en Client
-        const user = await Client.findOne({
+        // Buscamos un usuario con el correo 
+        const user = await User.findOne({
             email: req.body.email,
         });
-        if (!user) {
-            user = await Employee.findOne({
-                email: req.body.email,
-            });
-        }
         // Si no lo encuentra
         if (!user) {
             return res.status(404).json({

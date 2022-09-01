@@ -15,7 +15,9 @@ const schema = new mongoose.Schema({
   },
   role: {
     type: String,
-    default: 'Customer'
+    enum: ['Administrator', 'Seller', 'Customer'],
+    default: 'Customer',
+    required: true,
   },
   email: {
     type: String,
@@ -27,42 +29,43 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  // --------------------------------------------------------------------------
   adress: {
     street: {
       type: String,
-      required: true,
+      required: function() { return this.role === "Customer"; },
     },
     location: {
       type: String,
-      required: true,
+      //required: true,
     },
     outdoorNumber: {
       type: Number,
-      required: true,
+      //required: true,
     },
     interiorNumber: {
       type: Number,
-      required: true,
+      //required: true,
     }, 
     betweenStreets: {
       type: String,
-      required: true,
+      //required: true,
     },
     city: {
       type: String,
-      required: true,
+      //required: true,
     },
     country: {
       type: String,
-      required: true,
+      //required: true,
     },
     zipCode: {
       type: Number,
-      required: true,
+      //required: true,
     },
     references: {
       type: String,
-      required: true,
+      //required: true,
     }
   },
   contacts: {
@@ -83,5 +86,5 @@ const schema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("Client", schema);
+export default mongoose.model("User", schema);
 
