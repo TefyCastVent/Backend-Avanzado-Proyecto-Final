@@ -1,6 +1,6 @@
 import express from "express";
 import productRoutes from "./routes/productRoutes.js";
-// import clientRoutes from "./routes/clientRoutes.js"
+import categoryRoutes from "./routes/categoryRoutes.js"
 import authRoutes from "./routes/authRoutes.js"
 
 const api = express();
@@ -14,6 +14,6 @@ api.get('/status', ( req, res ) => {
 })
 api.use(authRoutes)
 api.use(productRoutes)
-// api.use(clientRoutes)
+api.use(categoryRoutes)
 
 export default api;

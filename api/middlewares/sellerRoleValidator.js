@@ -22,7 +22,6 @@ const checkSeller = async(req, res, next) => {
                   msg: "Inicie sesión como vendedor"
           })
         }
-        console.log(payload)
         // const expirationDate= parseInt(payload.expirationDate)
         // if(expirationDate.getTime() < new Date().getTime()){
         //   return res.status(400).json({

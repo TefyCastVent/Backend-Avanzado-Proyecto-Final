@@ -5,7 +5,7 @@ const createProduct = async (req, res) => {
       const newProduct = await Product.create(req.body);
       return res.json({
         msg: 'Producto creado',
-        Movie: newMovie,
+        Movie: newProduct,
       });
     } catch (error) {
       return res.status(500).json({

@@ -1,7 +1,6 @@
 import ShoppingCart from "../models/ShoppingCart.js";
 
 
-//TODO: usar el isActive
 const createShoppingCart = async (req, res) => {
     try{
         const newShoppingCart = await ShoppingCart.create(req.body);
@@ -17,6 +16,8 @@ const createShoppingCart = async (req, res) => {
     }
 };
 
+
+// Será necesario??
 const getAllShoppingCart = async (req, res) => {
     try {
         const shoppingCart = await ShoppingCart.find();
@@ -34,7 +35,7 @@ const getAllShoppingCart = async (req, res) => {
     }
 };
 
-
+// Se actualiza de un porrazo
 const updateShoppingCart = async (req, res) => {
     try {
         const { id } = req.params;
@@ -67,5 +68,24 @@ const deleteShoppingCart = async (req, res) => {
       });
     }
   };
+
+  // Agregar producto al carrito
+  const addProduct = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const ShoppingCart = await ShoppingCart.findById(id)
+        
+        return res.json({
+            msg: 'Carrito de compras actualizado',
+            data: { shoppingCart: updateShoppingCart},
+        })
+    } catch (error) {
+        return res.status(500).json({
+            msg: 'Error al actualizar carrito de compras',
+            error,
+        });
+    }
+};
+
   
 export { createShoppingCart, getAllShoppingCart, updateShoppingCart, deleteShoppingCart };
